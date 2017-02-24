@@ -14,6 +14,8 @@
 		FC9EFFC01E60AE420027877D /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9EFF9D1E60ADE00027877D /* RxCocoa.framework */; };
 		FC9EFFC11E60AE420027877D /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9EFF951E60ADE00027877D /* RxSwift.framework */; };
 		FC9EFFC31E60AF380027877D /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9EFFC21E60AF380027877D /* View.xib */; };
+		FC9EFFC51E60B9AB0027877D /* TableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9EFFC41E60B9AB0027877D /* TableController.swift */; };
+		FC9EFFC71E60B9E70027877D /* Table.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9EFFC61E60B9E70027877D /* Table.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +177,8 @@
 		FC9EFF711E60ABA80027877D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9EFF7C1E60ADE00027877D /* Rx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Rx.xcodeproj; path = RxSwift/Rx.xcodeproj; sourceTree = "<group>"; };
 		FC9EFFC21E60AF380027877D /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		FC9EFFC41E60B9AB0027877D /* TableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableController.swift; sourceTree = "<group>"; };
+		FC9EFFC61E60B9E70027877D /* Table.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Table.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,10 +216,12 @@
 			children = (
 				FC9EFF651E60ABA80027877D /* AppDelegate.swift */,
 				FC9EFF671E60ABA80027877D /* ViewController.swift */,
+				FC9EFFC41E60B9AB0027877D /* TableController.swift */,
 				FC9EFF6C1E60ABA80027877D /* Assets.xcassets */,
 				FC9EFF6E1E60ABA80027877D /* LaunchScreen.storyboard */,
 				FC9EFF711E60ABA80027877D /* Info.plist */,
 				FC9EFFC21E60AF380027877D /* View.xib */,
+				FC9EFFC61E60B9E70027877D /* Table.xib */,
 			);
 			path = Searchy;
 			sourceTree = "<group>";
@@ -466,6 +472,7 @@
 			files = (
 				FC9EFF701E60ABA80027877D /* LaunchScreen.storyboard in Resources */,
 				FC9EFFC31E60AF380027877D /* View.xib in Resources */,
+				FC9EFFC71E60B9E70027877D /* Table.xib in Resources */,
 				FC9EFF6D1E60ABA80027877D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC9EFFC51E60B9AB0027877D /* TableController.swift in Sources */,
 				FC9EFF681E60ABA80027877D /* ViewController.swift in Sources */,
 				FC9EFF661E60ABA80027877D /* AppDelegate.swift in Sources */,
 			);

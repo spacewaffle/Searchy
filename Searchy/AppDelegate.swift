@@ -22,9 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         
-        let viewController = ViewController(nibName: "View", bundle: nil)
+        //let viewController = ViewController(nibName: "View", bundle: nil)
         
-        self.window?.rootViewController = viewController
+        let tableController = TableController(nibName: "Table", bundle: nil)
+
+        
+        self.window?.rootViewController = tableController
         self.window?.makeKeyAndVisible()
         
         return true
