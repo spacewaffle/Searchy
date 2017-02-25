@@ -24,14 +24,13 @@ class TableController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let searchQuery = self.search.rx.text.orEmpty.asDriver()
         
         searchQuery.drive(
             onNext: { x in
                 print("text is \(x)")
                 self.filteredList = self.list.filter {
-                    $0.contains(x.localizedLowercase)
+                    $0.contains(x.localizedLowercase) || x.characters.count == 0
                 }
                 self.table.reloadData()
                 
