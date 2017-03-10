@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC32913F1E732FB000051857 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC32913A1E732FB000051857 /* Dependencies.swift */; };
+		FC3291401E732FB000051857 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC32913B1E732FB000051857 /* String+URL.swift */; };
+		FC3291411E732FB000051857 /* WikipediaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC32913C1E732FB000051857 /* WikipediaAPI.swift */; };
+		FC3291421E732FB000051857 /* WikipediaPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC32913D1E732FB000051857 /* WikipediaPage.swift */; };
+		FC3291431E732FB000051857 /* WikipediaSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC32913E1E732FB000051857 /* WikipediaSearchResult.swift */; };
 		FC9EFF661E60ABA80027877D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9EFF651E60ABA80027877D /* AppDelegate.swift */; };
 		FC9EFF681E60ABA80027877D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9EFF671E60ABA80027877D /* ViewController.swift */; };
 		FC9EFF6D1E60ABA80027877D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9EFF6C1E60ABA80027877D /* Assets.xcassets */; };
@@ -169,6 +174,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC32913A1E732FB000051857 /* Dependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
+		FC32913B1E732FB000051857 /* String+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
+		FC32913C1E732FB000051857 /* WikipediaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WikipediaAPI.swift; sourceTree = "<group>"; };
+		FC32913D1E732FB000051857 /* WikipediaPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WikipediaPage.swift; sourceTree = "<group>"; };
+		FC32913E1E732FB000051857 /* WikipediaSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WikipediaSearchResult.swift; sourceTree = "<group>"; };
 		FC9EFF621E60ABA80027877D /* Searchy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Searchy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9EFF651E60ABA80027877D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC9EFF671E60ABA80027877D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +229,11 @@
 				FC9EFFC41E60B9AB0027877D /* TableController.swift */,
 				FC9EFF6C1E60ABA80027877D /* Assets.xcassets */,
 				FC9EFF6E1E60ABA80027877D /* LaunchScreen.storyboard */,
+				FC32913A1E732FB000051857 /* Dependencies.swift */,
+				FC32913B1E732FB000051857 /* String+URL.swift */,
+				FC32913C1E732FB000051857 /* WikipediaAPI.swift */,
+				FC32913D1E732FB000051857 /* WikipediaPage.swift */,
+				FC32913E1E732FB000051857 /* WikipediaSearchResult.swift */,
 				FC9EFF711E60ABA80027877D /* Info.plist */,
 				FC9EFFC21E60AF380027877D /* View.xib */,
 				FC9EFFC61E60B9E70027877D /* Table.xib */,
@@ -484,8 +499,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC3291401E732FB000051857 /* String+URL.swift in Sources */,
+				FC32913F1E732FB000051857 /* Dependencies.swift in Sources */,
+				FC3291431E732FB000051857 /* WikipediaSearchResult.swift in Sources */,
 				FC9EFFC51E60B9AB0027877D /* TableController.swift in Sources */,
 				FC9EFF681E60ABA80027877D /* ViewController.swift in Sources */,
+				FC3291411E732FB000051857 /* WikipediaAPI.swift in Sources */,
+				FC3291421E732FB000051857 /* WikipediaPage.swift in Sources */,
 				FC9EFF661E60ABA80027877D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,6 +658,7 @@
 				FC9EFF761E60ABA80027877D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

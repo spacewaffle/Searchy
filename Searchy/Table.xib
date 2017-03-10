@@ -21,21 +21,29 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IpM-Xi-xQb">
-                    <rect key="frame" x="0.0" y="75" width="375" height="592"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IpM-Xi-xQb">
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="f1B-4W-l6T"/>
+                        <outlet property="delegate" destination="-1" id="zD0-EZ-27j"/>
                     </connections>
                 </tableView>
-                <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9iq-o8-ZbV">
-                    <rect key="frame" x="0.0" y="31" width="375" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="9iq-o8-ZbV">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="IpM-Xi-xQb" secondAttribute="trailing" id="0cw-4R-Uwo"/>
+                <constraint firstItem="IpM-Xi-xQb" firstAttribute="top" secondItem="9iq-o8-ZbV" secondAttribute="bottom" id="BT1-xX-vVd"/>
+                <constraint firstItem="IpM-Xi-xQb" firstAttribute="trailing" secondItem="9iq-o8-ZbV" secondAttribute="trailing" id="Me9-sI-L5F"/>
+                <constraint firstItem="IpM-Xi-xQb" firstAttribute="leading" secondItem="9iq-o8-ZbV" secondAttribute="leading" id="QP1-G4-NeQ"/>
+                <constraint firstAttribute="bottom" secondItem="IpM-Xi-xQb" secondAttribute="bottom" id="cmN-e4-Hdr"/>
+                <constraint firstItem="9iq-o8-ZbV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jaA-Hn-SX7"/>
+                <constraint firstItem="IpM-Xi-xQb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nqp-Cj-155"/>
+            </constraints>
             <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
     </objects>

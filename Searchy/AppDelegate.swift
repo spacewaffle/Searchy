@@ -22,12 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         
-        //let viewController = ViewController(nibName: "View", bundle: nil)
+//        let viewController = ViewController(nibName: "View", bundle: nil)
+        
+        let navigationController = UINavigationController()
         
         let tableController = TableController(nibName: "Table", bundle: nil)
 
-        
-        self.window?.rootViewController = tableController
+        navigationController.addChildViewController(tableController)
+        self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
         
         return true

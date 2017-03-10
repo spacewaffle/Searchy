@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class TableController: UIViewController, UITableViewDataSource {
+class TableController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var search: UISearchBar!
@@ -19,23 +19,48 @@ class TableController: UIViewController, UITableViewDataSource {
     
     let list: [String] = ["thing one", "thing two", "third thing", "four things", "thing number 5"]
     
-    var filteredList: [String] = []
+    var filteredList: [WikipediaSearchResult] = []
+    
+    let api: WikipediaAPI = DefaultWikipediaAPI.sharedAPI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.edgesForExtendedLayout = []
         
-        let searchQuery = self.search.rx.text.orEmpty.asDriver()
+        self.title = "Search"
         
-        searchQuery.drive(
-            onNext: { x in
-                print("text is \(x)")
-                self.filteredList = self.list.filter {
-                    $0.contains(x.localizedLowercase) || x.characters.count == 0
-                }
-                self.table.reloadData()
-                
+//        let searchQuery: Observable<String> = self.search.rx.text.orEmpty
+//            .throttle(0.3, scheduler:MainScheduler.instance)
+//        
+//        searchQuery
+//
+////            .flatMapLatest( { query in
+////                self.api.getSearchResults(query)
+////            })
+//            .subscribe(
+//                onNext: { x in
+//                    print("result is \(x)")
+//
+//                
+//                }
+//            ).addDisposableTo(disposeBag)
+        
+        let searchTerm: Observable<String> = self.search.rx.text.orEmpty
+            .throttle(0.3, scheduler:MainScheduler.instance)
+            .filter { $0.characters.count > 1 }
+        
+        
+        searchTerm.flatMap { term in
+            DefaultWikipediaAPI.sharedAPI
+                .getSearchResults(term)
             }
-        ).addDisposableTo(disposeBag)
+            .subscribe(onNext: { r in
+                self.filteredList = r
+                self.table.reloadData()
+                print("results: \(r)")
+            })
+            .addDisposableTo(disposeBag)
+        
         
              // Do any additional setup after loading the view, typically from a nib.
     }
@@ -52,7 +77,7 @@ class TableController: UIViewController, UITableViewDataSource {
         
         //let row = cellForRowAt.row
         //cell.textLabel?.text = swiftBlogs[row]
-        cell.textLabel?.text = filteredList[indexPath.row]
+        cell.textLabel?.text = filteredList[indexPath.row].title
         
         return cell
     }
@@ -60,6 +85,16 @@ class TableController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
         return filteredList.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("path is \(indexPath.row)")
+        let row = filteredList[indexPath.row].title
+        print("text is \(row)")
+        
+        let viewController = ViewController(selection: row)
+//        self.present(viewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
