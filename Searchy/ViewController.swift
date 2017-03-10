@@ -12,15 +12,14 @@ import RxSwift
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var button: UIButton!
-    @IBOutlet weak var label: UILabel!
-    let selection: String
+    @IBOutlet weak var webView: UIWebView!
+    let url: URL
     
-    init(selection: String) {
-        
-        self.selection = selection
+    init(title: String, url: URL) {
+        self.url = url
         super.init(nibName: "View", bundle: nil)
-        self.title = selection
+        self.title = title
+        
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented"  )
@@ -31,20 +30,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let request: URLRequest = URLRequest(url: self.url)
+        webView.loadRequest(request)
         
-        
-        self.label.text = self.selection
-        
-        let buttonTap = self.button.rx.tap.asDriver()
-        
-        buttonTap.drive(
-            onNext: { x in
-                self.label.text = "button was tapped!"
-//                let tableController = TableController(selection: row)
-//                self.present(viewController, animated: true, completion: nil)
-                
-            }
-        ).addDisposableTo(disposeBag)
         
         // Do any additional setup after loading the view, typically from a nib.
     }

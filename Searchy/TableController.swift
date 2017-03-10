@@ -48,6 +48,10 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
         let searchTerm: Observable<String> = self.search.rx.text.orEmpty
             .throttle(0.3, scheduler:MainScheduler.instance)
             .filter { $0.characters.count > 1 }
+            .do(
+                onNext: { x in
+                    print(x)
+            })
         
         
         searchTerm.flatMap { term in
@@ -70,14 +74,15 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
         // Dispose of any resources that can be recreated.
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        print("hello")
         let cellIdentifier = "ElementCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
             ?? UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
         
         //let row = cellForRowAt.row
         //cell.textLabel?.text = swiftBlogs[row]
-        cell.textLabel?.text = filteredList[indexPath.row].title
+        let item: WikipediaSearchResult = filteredList[indexPath.row]
+        cell.textLabel?.text = item.title
+        cell.detailTextLabel?.text = item.description
         
         return cell
     }
@@ -89,10 +94,12 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("path is \(indexPath.row)")
-        let row = filteredList[indexPath.row].title
-        print("text is \(row)")
+        let row = filteredList[indexPath.row]
+        print("text is \(row.title)")
         
-        let viewController = ViewController(selection: row)
+        print("url is \(row.URL)")
+        
+        let viewController = ViewController(title: row.title, url: row.URL)
 //        self.present(viewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
