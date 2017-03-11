@@ -19,7 +19,7 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     let list: [String] = ["thing one", "thing two", "third thing", "four things", "thing number 5"]
     
-    var filteredList: [WikipediaSearchResult] = []
+    var filteredList: [[WikipediaSearchResult]] = [[]]
     
     let sections: [String] = ["Search Results", "History"]
     
@@ -61,7 +61,7 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
                 .getSearchResults(term)
             }
             .subscribe(onNext: { r in
-                self.filteredList = r
+                self.filteredList[0] = r
                 self.table.reloadData()
                 print("results: \(r)")
             })
@@ -82,7 +82,7 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         //let row = cellForRowAt.row
         //cell.textLabel?.text = swiftBlogs[row]
-        let item: WikipediaSearchResult = filteredList[indexPath.row]
+        let item: WikipediaSearchResult = filteredList[indexPath.section][indexPath.row]
         cell.textLabel?.text = item.title
         cell.detailTextLabel?.text = item.description
         
@@ -91,7 +91,7 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
-        return filteredList.count
+        return filteredList[section].count
     }
     
     func tableView(_ tableView: UITableView, numberOfSections section: Int) -> Int{
@@ -106,10 +106,12 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("path is \(indexPath.row)")
-        let row = filteredList[indexPath.row]
+        let row = filteredList[indexPath.section][indexPath.row]
         print("text is \(row.title)")
         
         print("url is \(row.URL)")
+        filteredList[indexPath.section].append(row)
+        self.table.reloadData()
         
         let viewController = ViewController(title: row.title, url: row.URL)
 //        self.present(viewController, animated: true, completion: nil)
