@@ -21,6 +21,8 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     var filteredList: [WikipediaSearchResult] = []
     
+    let sections: [String] = ["Search Results", "History"]
+    
     let api: WikipediaAPI = DefaultWikipediaAPI.sharedAPI
     
     override func viewDidLoad() {
@@ -90,6 +92,16 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
         return filteredList.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfSections section: Int) -> Int{
+        
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+        
+        return sections[section]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
