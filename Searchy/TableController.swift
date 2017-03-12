@@ -19,7 +19,7 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     let list: [String] = ["thing one", "thing two", "third thing", "four things", "thing number 5"]
     
-    var filteredList: [[WikipediaSearchResult]] = [[]]
+    var filteredList: [[WikipediaSearchResult]] = [[],[]]
     
     let sections: [String] = ["Search Results", "History"]
     
@@ -99,6 +99,11 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
         return sections.count
     }
     
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
+//        
+//        return 40.0
+//    }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
         
         return sections[section]
@@ -110,8 +115,10 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
         print("text is \(row.title)")
         
         print("url is \(row.URL)")
-        filteredList[indexPath.section].append(row)
-        self.table.reloadData()
+        print("history is \(filteredList[1])")
+        filteredList[1].append(row)
+        print("history is now\(filteredList[1])")
+//        self.table.reloadData()
         
         let viewController = ViewController(title: row.title, url: row.URL)
 //        self.present(viewController, animated: true, completion: nil)
