@@ -94,11 +94,10 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
         return filteredList[section].count
     }
     
-    func tableView(_ tableView: UITableView, numberOfSections section: Int) -> Int{
-        
+    func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
-    
+
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
 //        
 //        return 40.0
@@ -118,7 +117,8 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
         print("history is \(filteredList[1])")
         filteredList[1].append(row)
         print("history is now\(filteredList[1])")
-//        self.table.reloadData()
+        print("sections are \(sections)")
+        self.table.reloadData()
         
         let viewController = ViewController(title: row.title, url: row.URL)
 //        self.present(viewController, animated: true, completion: nil)
