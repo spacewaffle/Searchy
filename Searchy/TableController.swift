@@ -25,8 +25,18 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     let api: WikipediaAPI = DefaultWikipediaAPI.sharedAPI
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        if(!self.table.isEditing) {
+          self.table.setEditing(true, animated: true)
+        } else {
+            self.table.setEditing(false, animated: true)
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.edgesForExtendedLayout = []
         
         self.title = "Search"
@@ -131,6 +141,26 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
         let viewController = ViewController(title: row.title, url: row.URL)
 //        self.present(viewController, animated: true, completion: nil)
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        filteredList[1].remove(at:indexPath.row)
+        
+        WikipediaSearchResult.save(filteredList[1])
+        tableView.deleteRows(at: [indexPath], with:.automatic)
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 1
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let s = filteredList[1][sourceIndexPath.row]
+        filteredList[1].remove(at:sourceIndexPath.row)
+        filteredList[1].insert(s, at: destinationIndexPath.row)
+        
+        WikipediaSearchResult.save(filteredList[1])
+        tableView.reloadData()
     }
     
 }
