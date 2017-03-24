@@ -31,6 +31,8 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         self.title = "Search"
         
+        filteredList[1] = WikipediaSearchResult.load()
+        
 //        let searchQuery: Observable<String> = self.search.rx.text.orEmpty
 //            .throttle(0.3, scheduler:MainScheduler.instance)
 //        
@@ -117,6 +119,12 @@ class TableController: UIViewController, UITableViewDataSource, UITableViewDeleg
         print("history is \(filteredList[1])")
         filteredList[1].append(row)
         print("history is now\(filteredList[1])")
+        
+        
+        //add row to storage
+        
+        WikipediaSearchResult.save(filteredList[1])
+        
         print("sections are \(sections)")
         self.table.reloadData()
         

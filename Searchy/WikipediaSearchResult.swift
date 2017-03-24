@@ -51,6 +51,62 @@ struct WikipediaSearchResult: CustomDebugStringConvertible {
 
         return searchResults
     }
+    
+    static func toJson(_ searchResults: [WikipediaSearchResult]) -> Data {
+        let dict: [[String:String]] = searchResults.map({ (result: WikipediaSearchResult) -> [String:String] in
+            ["title": result.title, "description": result.description, "URL": result.URL.absoluteString]
+        })
+        let jsonData = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+        // here "jsonData" is the dictionary encoded in JSON data
+
+        return jsonData
+    }
+    
+    static func toSearchResult(_ data: Data) -> [WikipediaSearchResult] {
+        let json: [[String: String]] = try! JSONSerialization.jsonObject(with: data, options: []) as! [[String:String]]
+        
+        return try! json.map({ (data: [String: String]) -> WikipediaSearchResult in
+            guard let title = data["title"],
+                  let description = data["description"],
+                  let urlstring = data["URL"],
+                  let URL = Foundation.URL(string: urlstring)  else{
+                throw WikipediaParseError
+            }
+            let result = WikipediaSearchResult(title: title, description: description, URL: URL)
+            return result
+        })
+    }
+    
+    static func save(_ result: [WikipediaSearchResult]) -> Void {
+        let fm = FileManager.default
+        let docsurl = try! fm.url(for:.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        
+        let json = WikipediaSearchResult.toJson(result)
+        try! json.write(to: docsurl.appendingPathComponent("history.json"), options: [])
+        
+    }
+    
+    static func load() -> [WikipediaSearchResult] {
+        
+        let fm = FileManager.default
+        let docsurl = try! fm.url(for:.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        
+        let pathUrl = docsurl.appendingPathComponent("history.json")
+        
+        if( !fm.fileExists(atPath: pathUrl.path) ){
+            let json = WikipediaSearchResult.toJson([])
+            try! json.write(to: pathUrl, options: [])
+        }
+        
+        guard let data = try? Data(contentsOf: pathUrl) else{
+            fatalError("failed to load data from path url \(pathUrl)")
+        }
+        let result = WikipediaSearchResult.toSearchResult(data)
+
+        return result
+    }
+    
+    
 }
 
 extension WikipediaSearchResult {
